@@ -26,57 +26,58 @@ function Chambers() {
           </button>
         );
       })}
+      <Help />
     </nav>
+  );
+}
+
+function Help() {
+  const setTour = useStore((s) => s.setTour);
+  const live = useStore((s) => s.live);
+  if (live) return null;
+  return (
+    <button className="p3-help" onClick={() => setTour(0)}>
+      <Icon name="help" size={15} stroke={1.8} />How it works
+    </button>
   );
 }
 
 /** Centre: the name of the game and how long you have. */
 function Head() {
-  const setTour = useStore((s) => s.setTour);
-  const live = useStore((s) => s.live);
   return (
     <div className="p3-head">
       <h1>Midterms Pick Em</h1>
       <Deadline align="center" />
-      {!live && (
-        <button className="help" onClick={() => setTour(0)}>
-          <Icon name="help" size={13} stroke={1.8} />How it works
-        </button>
-      )}
     </div>
   );
 }
 
 /** Right edge: the race you are on, and the two people in it. */
 function Race() {
-  const tab = useStore((s) => s.tab);
   const id = useStore((s) => s.cursor[s.tab]);
-  const step = useStore((s) => s.step);
   const race = BY_ID[id];
-  const list = RACES[tab];
-  const i = list.findIndex((r) => r.id === id);
   return (
     <aside className="p3-race">
-      <div className="hd">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div key={race.id} className="nm" initial={{ opacity: 0, y: 7 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -7 }} transition={{ type: 'spring', stiffness: 430, damping: 34 }}>
-            <Flag st={race.state} />
-            <h2>{race.stateName}</h2>
-          </motion.div>
-        </AnimatePresence>
-      </div>
       <AnimatePresence mode="popLayout" initial={false}>
-        <motion.div key={race.id} className="cands" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} transition={{ type: 'spring', stiffness: 430, damping: 36 }}>
-          <CandidateRow race={race} side="R" advance />
-          <CandidateRow race={race} side="D" advance />
+        <motion.div
+          key={race.id}
+          className="in"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ type: 'spring', stiffness: 430, damping: 34 }}
+        >
+          <div className="hd">
+            <Flag st={race.state} />
+            {/* long names step down a size rather than clipping */}
+            <h2 style={{ fontSize: race.stateName.length > 11 ? 20 : 24 }}>{race.stateName}</h2>
+          </div>
+          <div className="cands">
+            <CandidateRow race={race} side="R" advance />
+            <CandidateRow race={race} side="D" advance />
+          </div>
         </motion.div>
       </AnimatePresence>
-      {/* quiet way through the chamber, under the two names */}
-      <div className="stp">
-        <button onClick={() => step(-1)} aria-label="Previous race"><Icon name="chevLeft" size={15} stroke={2} /></button>
-        <span className="num">{i + 1} of {list.length}</span>
-        <button onClick={() => step(1)} aria-label="Next race"><Icon name="chevRight" size={15} stroke={2} /></button>
-      </div>
     </aside>
   );
 }
@@ -126,7 +127,7 @@ function Wall() {
     <div className="p3-wall">
       {TABS.map((k) => (
         <div key={k} className={'sec' + (tab === k ? ' on' : '')} onClick={() => tab !== k && setTab(k)}>
-          <div className="lbl">{TAB_LABEL[k]}</div>
+          <div className="lbl">{TAB_LABEL[k]}<span className="c num">{RACES[k].filter((r) => picks[r.id]).length} of {RACES[k].length}</span></div>
           <div className="g" style={{ gridTemplateColumns: `repeat(${cols[k]}, 13px)` }}>
             {RACES[k].map((r) => {
               const p = picks[r.id];

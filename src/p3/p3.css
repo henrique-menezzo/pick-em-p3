@@ -14,32 +14,29 @@
 .p3-head { position: absolute; left: 0; right: 0; top: 50px; text-align: center; z-index: 6; }
 .p3-head h1 { margin: 0; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -.4px; }
 .p3-head .p-deadline { margin-top: 14px; }
-.p3-head .help { margin-top: 12px; height: 24px; padding: 0 9px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; font-size: 12px; color: #5f5f5f; transition: background .2s, color .2s; }
-.p3-head .help:hover { background: rgba(255, 255, 255, .05); color: var(--fg); }
+.p3-help { margin: 30px 0 0 18px; display: inline-flex; align-items: center; gap: 9px; font-size: 14px; line-height: 1; color: #6a6a6a; transition: color .2s; }
+.p3-help:hover { color: var(--fg); }
 .p-deadline { display: flex; align-items: baseline; justify-content: center; gap: 6px; font-size: 14px; line-height: 1; color: var(--muted); }
 .p-deadline b { font-weight: 500; color: #b8b8b8; font-variant-numeric: tabular-nums; }
 
-/* right edge — the race you are on */
-.p3-race { position: absolute; right: 64px; top: 50px; width: 240px; z-index: 6; }
-.p3-race .hd { min-height: 30px; }
-.p3-race .nm { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.p3-race .nm h2 { margin: 0; font-size: 21px; line-height: 1.1; font-weight: 600; letter-spacing: -.2px; white-space: nowrap; }
-.p3-race .flag { width: 26px; height: 19px; border-radius: 3px; flex: none; }
-.p3-race .stp { margin-top: 14px; display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
-.p3-race .stp button { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; color: #5f5f5f; transition: background .2s, color .2s; }
-.p3-race .stp button:hover { background: rgba(255, 255, 255, .06); color: var(--fg); }
-.p3-race .stp .num { font-size: 11px; color: #4e4e4e; padding: 0 2px; }
+/* right edge — the race you are on: one block, aligned on the card's own edge */
+.p3-race { position: absolute; right: 64px; top: 50px; width: 191px; z-index: 6; }
+.p3-race .hd { height: 30px; display: flex; align-items: center; gap: 10px; }
+.p3-race .hd h2 { margin: 0; line-height: 1.1; font-weight: 600; letter-spacing: -.3px; white-space: nowrap; }
+.p3-race .flag { width: 32px; height: 22px; border-radius: 3px; flex: none; }
 .p3-race .cands { margin-top: 24px; display: flex; flex-direction: column; gap: 6px; }
-.p3-race .cand { padding: 10px; border-radius: 14px; gap: 12px; }
+.p3-race .cand { padding: 13px 14px; border-radius: 16px; gap: 14px; }
 .p3-race .cand .face { width: 36px; height: 36px; }
-.p3-race .cand .n { font-size: 14px; }
+.p3-race .cand .t { gap: 3px; }
+.p3-race .cand .n { font-size: 15px; }
 .p3-race .cand .p { font-size: 12px; }
 /* your pick is the one that keeps a surface under it; the other simply steps back */
 .p3-race .cand.on.r, .p3-race .cand.on.d { background: #1a1a1a; }
-.p3-race .cand .ck { width: 8px; height: 8px; margin-right: 2px; box-shadow: none; }
-.p3-race .cand .ck svg { display: none; }
+.p3-race .cand .ck { display: none; }
 .p3-race .cand.off { opacity: .42; }
-.p3-race .cand.off:hover { opacity: .75; }
+.p3-race .cand.off:hover { opacity: .75; background: none; }
+.p3-race .cand:hover { background: rgba(255, 255, 255, .04); }
+.p3-race .cand.on:hover { background: #1f1f1f; }
 
 /* the map: dots land at 279..1160 × 230..779, exactly as in the frame */
 .p3-map { position: absolute; left: 98px; top: 77px; width: 1243px; height: 722px; }
@@ -63,7 +60,8 @@
 .p3-wall .sec { display: flex; flex-direction: column; gap: 12px; transition: opacity .3s var(--ease); }
 .p3-wall .sec:not(.on) { opacity: .42; cursor: pointer; }
 .p3-wall .sec:not(.on):hover { opacity: .85; }
-.p3-wall .lbl { font-size: 13px; line-height: 1; font-weight: 600; color: var(--fg); }
+.p3-wall .lbl { display: flex; align-items: baseline; gap: 8px; font-size: 13px; line-height: 1; font-weight: 600; color: var(--fg); }
+.p3-wall .lbl .c { font-size: 12px; font-weight: 500; color: var(--dim); }
 .p3-wall .g { display: grid; gap: 6px 9px; }
 .p3-wall .b { padding: 0; display: block; border-radius: 50%; }
 .p3-wall .d { display: block; width: 13px; height: 13px; border-radius: 50%; background: #2c2c2c; transition: background .3s, transform .2s var(--ease); }
