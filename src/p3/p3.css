@@ -1,0 +1,90 @@
+/* ---- P3 · the screen, at the geometry of the Figma frame (1440 × 1037) ----------------------- */
+.p3 { position: relative; height: 973px; }
+
+/* left edge — the chambers */
+.p3-chambers { position: absolute; left: 64px; top: 50px; display: flex; flex-direction: column; z-index: 6; }
+.p3-chambers .ch { position: relative; height: 49px; padding: 0 18px; display: flex; align-items: center; gap: 8px; border-radius: 999px; font-size: 14px; line-height: 1; color: #757575; transition: color .2s; z-index: 0; }
+.p3-chambers .ch:hover { color: #c8c8c8; }
+.p3-chambers .ch.on { color: var(--fg); font-weight: 600; }
+.p3-chambers .ch .ct { font-size: 13px; color: #4e4e4e; transition: color .2s; }
+.p3-chambers .ch.on .ct, .p3-chambers .ch:hover .ct { color: var(--muted); }
+.p3-chambers .hl { position: absolute; inset: 0; border-radius: 999px; background: #1c1c1c; z-index: -1; }
+
+/* centre — the name and the clock */
+.p3-head { position: absolute; left: 0; right: 0; top: 50px; text-align: center; z-index: 6; }
+.p3-head h1 { margin: 0; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -.4px; }
+.p3-head .p-deadline { margin-top: 14px; }
+.p3-head .help { margin-top: 12px; height: 24px; padding: 0 9px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; font-size: 12px; color: #5f5f5f; transition: background .2s, color .2s; }
+.p3-head .help:hover { background: rgba(255, 255, 255, .05); color: var(--fg); }
+.p-deadline { display: flex; align-items: baseline; justify-content: center; gap: 6px; font-size: 14px; line-height: 1; color: var(--muted); }
+.p-deadline b { font-weight: 500; color: #b8b8b8; font-variant-numeric: tabular-nums; }
+
+/* right edge — the race you are on */
+.p3-race { position: absolute; right: 64px; top: 50px; width: 240px; z-index: 6; }
+.p3-race .hd { min-height: 30px; }
+.p3-race .nm { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.p3-race .nm h2 { margin: 0; font-size: 21px; line-height: 1.1; font-weight: 600; letter-spacing: -.2px; white-space: nowrap; }
+.p3-race .flag { width: 26px; height: 19px; border-radius: 3px; flex: none; }
+.p3-race .stp { margin-top: 14px; display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+.p3-race .stp button { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; color: #5f5f5f; transition: background .2s, color .2s; }
+.p3-race .stp button:hover { background: rgba(255, 255, 255, .06); color: var(--fg); }
+.p3-race .stp .num { font-size: 11px; color: #4e4e4e; padding: 0 2px; }
+.p3-race .cands { margin-top: 24px; display: flex; flex-direction: column; gap: 6px; }
+.p3-race .cand { padding: 10px; border-radius: 14px; gap: 12px; }
+.p3-race .cand .face { width: 36px; height: 36px; }
+.p3-race .cand .n { font-size: 14px; }
+.p3-race .cand .p { font-size: 12px; }
+/* your pick is the one that keeps a surface under it; the other simply steps back */
+.p3-race .cand.on.r, .p3-race .cand.on.d { background: #1a1a1a; }
+.p3-race .cand .ck { width: 8px; height: 8px; margin-right: 2px; box-shadow: none; }
+.p3-race .cand .ck svg { display: none; }
+.p3-race .cand.off { opacity: .42; }
+.p3-race .cand.off:hover { opacity: .75; }
+
+/* the map: dots land at 279..1160 × 230..779, exactly as in the frame */
+.p3-map { position: absolute; left: 98px; top: 77px; width: 1243px; height: 722px; }
+.p3 .mapbox { position: absolute; inset: 0; border-radius: 0; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+
+/* the bottom band: what you have done */
+.p3-legend { position: absolute; left: 62px; top: 770px; display: flex; gap: 16px; z-index: 6; }
+.p3-legend span { display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 1.4; color: var(--muted); }
+.p3-legend b { font-weight: 600; color: var(--fg); }
+.p3-legend i { width: 8px; height: 8px; border-radius: 50%; display: block; flex: none; }
+.p3-legend i.faded { background: linear-gradient(90deg, var(--R) 50%, var(--D) 50%); opacity: .25; }
+.p3-progress { position: absolute; left: 64px; right: 64px; top: 803px; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, .08); overflow: hidden; z-index: 6; }
+.p3-progress b { display: block; height: 100%; border-radius: 6px; background: var(--fg); transition: width .6s var(--ease); }
+.p3-tally { position: absolute; right: 64px; top: 744px; display: flex; align-items: baseline; gap: 4px; z-index: 6; }
+.p3-tally .big { font-size: 32px; font-weight: 600; letter-spacing: -.8px; line-height: 1.2; }
+.p3-tally .of { font-size: 18px; font-weight: 600; color: var(--dim); }
+.p3-tally .w { margin-left: 4px; font-size: 14px; color: var(--dim); }
+
+/* the wall of 97 */
+.p3-wall { position: absolute; left: 64px; top: 837px; display: flex; gap: 32px; align-items: flex-start; z-index: 6; }
+.p3-wall .sec { display: flex; flex-direction: column; gap: 12px; transition: opacity .3s var(--ease); }
+.p3-wall .sec:not(.on) { opacity: .42; cursor: pointer; }
+.p3-wall .sec:not(.on):hover { opacity: .85; }
+.p3-wall .lbl { font-size: 13px; line-height: 1; font-weight: 600; color: var(--fg); }
+.p3-wall .g { display: grid; gap: 6px 9px; }
+.p3-wall .b { padding: 0; display: block; border-radius: 50%; }
+.p3-wall .d { display: block; width: 13px; height: 13px; border-radius: 50%; background: #2c2c2c; transition: background .3s, transform .2s var(--ease); }
+.p3-wall .d.R { background: var(--R); }
+.p3-wall .d.D { background: var(--D); }
+.p3-wall .d.lost { opacity: .35; }
+.p3-wall .b:hover .d { transform: scale(1.25); }
+.p3-wall .d.cur { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--fg); }
+
+/* bottom right — reset, autofill, save (or the scrubber on election night) */
+.p3-actions { position: absolute; right: 64px; top: 851px; z-index: 6; }
+.p-actions { display: flex; gap: 12px; align-items: center; }
+.btn.sm { height: 48px; padding: 0 18px 0 15px; font-size: 14px; gap: 8px; }
+.btn.save.sm { padding: 0 22px; }
+
+/* election night */
+.p-tl { display: flex; align-items: center; gap: 14px; }
+.p-tl .play { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--pill); color: var(--fg); flex: none; }
+.p-tl .play:hover { background: #333; }
+.p-tl .when { display: flex; flex-direction: column; gap: 3px; min-width: 130px; }
+.p-tl .when b { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; }
+.p-tl .when .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--R); }
+.p-tl .when small { font-size: 11px; color: var(--muted); }
+.p-tl input[type=range] { width: 200px; }
