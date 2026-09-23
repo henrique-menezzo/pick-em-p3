@@ -15,6 +15,7 @@ function Chambers() {
   const picks = useStore((s) => s.picks);
   return (
     <nav className="p3-chambers">
+      <div className="card">
       {TABS.map((k) => {
         const list = RACES[k];
         const done = list.filter((r) => picks[r.id]).length;
@@ -26,6 +27,7 @@ function Chambers() {
           </button>
         );
       })}
+      </div>
       <Help />
     </nav>
   );
@@ -37,7 +39,7 @@ function Help() {
   if (live) return null;
   return (
     <button className="p3-help" onClick={() => setTour(0)}>
-      <Icon name="help" size={15} stroke={1.8} />How it works
+      <Icon name="help" size={15} stroke={1.8} />How it works?
     </button>
   );
 }
@@ -52,30 +54,37 @@ function Head() {
   );
 }
 
-/** Right edge: the race you are on, and the two people in it. */
+/** Right edge: the race you are on, in its own card over the map. */
 function Race() {
   const id = useStore((s) => s.cursor[s.tab]);
+  const step = useStore((s) => s.step);
   const race = BY_ID[id];
   return (
     <aside className="p3-race">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.div
-          key={race.id}
-          className="in"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ type: 'spring', stiffness: 430, damping: 34 }}
-        >
-          <div className="hd">
+      <div className="hd">
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.div
+            key={race.id}
+            className="nm"
+            initial={{ opacity: 0, y: 7 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -7 }}
+            transition={{ type: 'spring', stiffness: 430, damping: 34 }}
+          >
             <Flag st={race.state} />
             {/* long names step down a size rather than clipping */}
-            <h2 style={{ fontSize: race.stateName.length > 11 ? 20 : 24 }}>{race.stateName}</h2>
-          </div>
-          <div className="cands">
-            <CandidateRow race={race} side="R" advance />
-            <CandidateRow race={race} side="D" advance />
-          </div>
+            <h2 style={{ fontSize: race.stateName.length > 12 ? 16 : 19 }}>{race.stateName}</h2>
+          </motion.div>
+        </AnimatePresence>
+        <div className="stp">
+          <button onClick={() => step(-1)} aria-label="Previous race"><Icon name="arrowLeft" size={15} stroke={1.8} /></button>
+          <button onClick={() => step(1)} aria-label="Next race"><Icon name="arrowRight" size={15} stroke={1.8} /></button>
+        </div>
+      </div>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.div key={race.id} className="cands" initial={{ opacity: 0, x: 9 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -9 }} transition={{ type: 'spring', stiffness: 430, damping: 36 }}>
+          <CandidateRow race={race} side="R" advance />
+          <CandidateRow race={race} side="D" advance />
         </motion.div>
       </AnimatePresence>
     </aside>

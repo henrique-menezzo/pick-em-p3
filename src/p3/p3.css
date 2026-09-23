@@ -1,14 +1,17 @@
 /* ---- P3 · the screen, at the geometry of the Figma frame (1440 × 1037) ----------------------- */
 .p3 { position: relative; height: 973px; }
 
-/* left edge — the chambers */
-.p3-chambers { position: absolute; left: 64px; top: 50px; display: flex; flex-direction: column; z-index: 6; }
-.p3-chambers .ch { position: relative; height: 49px; padding: 0 18px; display: flex; align-items: center; gap: 8px; border-radius: 999px; font-size: 14px; line-height: 1; color: #757575; transition: color .2s; z-index: 0; }
+/* left edge — the chambers, in their own card (66,114 · 142×155 · r16) */
+.p3-chambers { position: absolute; left: 66px; top: 50px; z-index: 7; }
+.p3-chambers .card { width: 142px; padding: 4px; border-radius: 16px; background: #151515; display: flex; flex-direction: column; }
+.p3-chambers .ch { position: relative; height: 49px; padding: 0 18px; display: flex; align-items: center; gap: 7px; border-radius: 16px; font-size: 14px; line-height: 1; color: var(--muted); transition: color .2s; z-index: 0; white-space: nowrap; }
 .p3-chambers .ch:hover { color: #c8c8c8; }
 .p3-chambers .ch.on { color: var(--fg); font-weight: 600; }
-.p3-chambers .ch .ct { font-size: 13px; color: #4e4e4e; transition: color .2s; }
-.p3-chambers .ch.on .ct, .p3-chambers .ch:hover .ct { color: var(--muted); }
-.p3-chambers .hl { position: absolute; inset: 0; border-radius: 999px; background: #1c1c1c; z-index: -1; }
+.p3-chambers .ch .ct { font-size: 14px; font-weight: 400; color: #6a6a6a; transition: color .2s; }
+.p3-chambers .ch.on .ct { color: #8f8f8f; }
+.p3-chambers .hl { position: absolute; inset: 0; border-radius: 16px; background: #1c1b1b; z-index: -1; }
+.p3-help { position: absolute; left: -2px; top: 179px; height: 31px; padding: 0 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; border-radius: 8px; font-size: 12px; line-height: 1; color: var(--muted); transition: background .2s, color .2s; }
+.p3-help:hover { background: rgba(255, 255, 255, .05); color: var(--fg); }
 
 /* centre — the name and the clock */
 .p3-head { position: absolute; left: 0; right: 0; top: 50px; text-align: center; z-index: 6; }
@@ -17,29 +20,33 @@
 .p3-help { margin: 30px 0 0 18px; display: inline-flex; align-items: center; gap: 9px; font-size: 14px; line-height: 1; color: #6a6a6a; transition: color .2s; }
 .p3-help:hover { color: var(--fg); }
 .p-deadline { display: flex; align-items: baseline; justify-content: center; gap: 6px; font-size: 14px; line-height: 1; color: var(--muted); }
-.p-deadline b { font-weight: 500; color: #b8b8b8; font-variant-numeric: tabular-nums; }
+.p-deadline b { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
 
-/* right edge — the race you are on: one block, aligned on the card's own edge */
-.p3-race { position: absolute; right: 64px; top: 50px; width: 191px; z-index: 6; }
-.p3-race .hd { height: 30px; display: flex; align-items: center; gap: 10px; }
-.p3-race .hd h2 { margin: 0; line-height: 1.1; font-weight: 600; letter-spacing: -.3px; white-space: nowrap; }
-.p3-race .flag { width: 32px; height: 22px; border-radius: 3px; flex: none; }
-.p3-race .cands { margin-top: 24px; display: flex; flex-direction: column; gap: 6px; }
-.p3-race .cand { padding: 13px 14px; border-radius: 16px; gap: 14px; }
-.p3-race .cand .face { width: 36px; height: 36px; }
+/* right edge — the race, in a card over the map (1132,114 · 244×182 · r16) */
+.p3-race { position: absolute; right: 64px; top: 50px; width: 244px; padding: 16px; border-radius: 16px; background: #151515; z-index: 7; }
+.p3-race .hd { height: 30px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.p3-race .nm { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.p3-race .nm h2 { margin: 0; line-height: 1.1; font-weight: 600; letter-spacing: -.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.p3-race .flag { width: 26px; height: 19px; border-radius: 3px; flex: none; }
+.p3-race .stp { display: flex; gap: 0; flex: none; }
+.p3-race .stp button { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; color: #6f6f6f; transition: background .2s, color .2s; }
+.p3-race .stp button:hover { background: rgba(255, 255, 255, .06); color: var(--fg); }
+.p3-race .cands { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+.p3-race .cand { height: 53px; padding: 0 9px; border-radius: 14px; gap: 12px; }
+.p3-race .cand .face { width: 34px; height: 34px; }
 .p3-race .cand .t { gap: 3px; }
-.p3-race .cand .n { font-size: 15px; }
+.p3-race .cand .n { font-size: 14px; }
 .p3-race .cand .p { font-size: 12px; }
 /* your pick is the one that keeps a surface under it; the other simply steps back */
-.p3-race .cand.on.r, .p3-race .cand.on.d { background: #1a1a1a; }
+.p3-race .cand.on.r, .p3-race .cand.on.d { background: #242424; }
 .p3-race .cand .ck { display: none; }
-.p3-race .cand.off { opacity: .42; }
-.p3-race .cand.off:hover { opacity: .75; background: none; }
-.p3-race .cand:hover { background: rgba(255, 255, 255, .04); }
-.p3-race .cand.on:hover { background: #1f1f1f; }
+.p3-race .cand.off { opacity: .45; }
+.p3-race .cand.off:hover { opacity: .8; background: none; }
+.p3-race .cand:hover { background: rgba(255, 255, 255, .045); }
+.p3-race .cand.on:hover { background: #2a2a2a; }
 
 /* the map: dots land at 279..1160 × 230..779, exactly as in the frame */
-.p3-map { position: absolute; left: 98px; top: 77px; width: 1243px; height: 722px; }
+.p3-map { position: absolute; left: 35px; top: 55px; width: 1316px; height: 765px; }
 .p3 .mapbox { position: absolute; inset: 0; border-radius: 0; overflow: visible; -webkit-mask-image: none; mask-image: none; }
 
 /* the bottom band: what you have done */
@@ -50,7 +57,7 @@
 .p3-legend i.faded { background: linear-gradient(90deg, var(--R) 50%, var(--D) 50%); opacity: .25; }
 .p3-progress { position: absolute; left: 64px; right: 64px; top: 803px; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, .08); overflow: hidden; z-index: 6; }
 .p3-progress b { display: block; height: 100%; border-radius: 6px; background: var(--fg); transition: width .6s var(--ease); }
-.p3-tally { position: absolute; right: 64px; top: 744px; display: flex; align-items: baseline; gap: 4px; z-index: 6; }
+.p3-tally { position: absolute; right: 64px; top: 748px; display: flex; align-items: baseline; gap: 4px; z-index: 6; }
 .p3-tally .big { font-size: 32px; font-weight: 600; letter-spacing: -.8px; line-height: 1.2; }
 .p3-tally .of { font-size: 18px; font-weight: 600; color: var(--dim); }
 .p3-tally .w { margin-left: 4px; font-size: 14px; color: var(--dim); }
@@ -72,7 +79,12 @@
 .p3-wall .d.cur { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--fg); }
 
 /* bottom right — reset, autofill, save (or the scrubber on election night) */
-.p3-actions { position: absolute; right: 64px; top: 851px; z-index: 6; }
+.p3-actions { position: absolute; right: 68px; top: 849px; z-index: 6; }
+/* the frame's buttons are rounded rectangles, not pills */
+.p3 .btn, .p3 .btn.sm { height: 48px; border-radius: 16px; }
+.p3 .btn.reset { width: 48px; }
+.p3 .btn.save { min-width: 97px; justify-content: center; }
+.p3 .autofill-menu { border-radius: 16px; }
 .p-actions { display: flex; gap: 12px; align-items: center; }
 .btn.sm { height: 48px; padding: 0 18px 0 15px; font-size: 14px; gap: 8px; }
 .btn.save.sm { padding: 0 22px; }
