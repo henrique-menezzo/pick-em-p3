@@ -23,6 +23,7 @@ if (Q.has('reset')) {
   if (Q.has('fill')) useStore.setState({ picks: Object.fromEntries(ALL.map((r, i) => [r.id, i % 5 === 2 ? (r.poll === 'R' ? 'D' : 'R') : r.poll])) });
   if (Q.has('empty')) useStore.setState({ picks: {}, savedAt: null });
   if (Q.has('night')) s.setLive(Q.get('night') !== '0');
+  if (Q.has('tour')) setTimeout(() => useStore.getState().setTour(Number(Q.get('tour')) || 0), 100); // ?tour=0..5 — open a step for review
   if (Q.has('t')) s.setT(+Q.get('t')!);
 }
 
