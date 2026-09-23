@@ -10,15 +10,14 @@
 .p3-chambers .ch .ct { font-size: 14px; font-weight: 400; color: #6a6a6a; transition: color .2s; }
 .p3-chambers .ch.on .ct { color: #8f8f8f; }
 .p3-chambers .hl { position: absolute; inset: 0; border-radius: 16px; background: #1c1b1b; z-index: -1; }
-.p3-help { position: absolute; left: -2px; top: 179px; height: 31px; padding: 0 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; border-radius: 8px; font-size: 12px; line-height: 1; color: var(--muted); transition: background .2s, color .2s; }
+/* the icon starts on the chambers' own text line (x=88), not on the card's edge */
+.p3-help { position: absolute; left: 10px; top: 179px; height: 31px; padding: 0 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; border-radius: 8px; font-size: 12px; line-height: 1; color: var(--muted); transition: background .2s, color .2s; }
 .p3-help:hover { background: rgba(255, 255, 255, .05); color: var(--fg); }
 
 /* centre — the name and the clock */
 .p3-head { position: absolute; left: 0; right: 0; top: 50px; text-align: center; z-index: 6; }
 .p3-head h1 { margin: 0; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -.4px; }
 .p3-head .p-deadline { margin-top: 14px; }
-.p3-help { margin: 30px 0 0 18px; display: inline-flex; align-items: center; gap: 9px; font-size: 14px; line-height: 1; color: #6a6a6a; transition: color .2s; }
-.p3-help:hover { color: var(--fg); }
 .p-deadline { display: flex; align-items: baseline; justify-content: center; gap: 6px; font-size: 14px; line-height: 1; color: var(--muted); }
 .p-deadline b { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
 
