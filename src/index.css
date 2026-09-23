@@ -36,7 +36,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .app { width: 1440px; transform-origin: 0 0; position: absolute; left: 0; top: 0; }
 
 /* ---- site navigation (Figma "Header (Web)") ------------------------------------------------------ */
-.nav { position: relative; height: 64px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
+.nav { position: relative; height: 64px; padding: 0 64px; display: flex; align-items: center; justify-content: space-between; }
 .nav-links { display: flex; gap: 2px; }
 .nav-links a, .nav-right a { height: 32px; padding: 0 12px; display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 1; color: var(--fg); border-radius: 999px; transition: background .2s, color .2s; }
 .nav-links a:hover, .nav-right a:hover { background: rgba(255, 255, 255, .05); }

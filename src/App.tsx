@@ -34,6 +34,8 @@ export default function App() {
   if (isPhone) return (<><Mobile /><AuthModal /><Toast /></>);
   return (
     <div className="scaler" style={{ height }}>
+      {/* the nav's hairline is drawn outside the scaled frame, so it reaches both screen edges */}
+      <div className="page-rule" style={{ top: 64 * scale }} />
       <div className="app" ref={ref} style={{ transform: `scale(${scale})`, left }}>
         <Nav />
         <Screen />
